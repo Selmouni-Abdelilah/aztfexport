@@ -17,10 +17,9 @@ pipeline {
         }
         stage('Using Aztfexport') {
             steps {
-                script {
-                    dir('Terraform') {   
-                        sh ''' aztfexport query -n "resourceGroup =~ 'rg_abdel_proc' and (type contains 'Microsoft.Web' or type contains 'Microsoft.Logic')" '''
-                    }
+                script { 
+                    sh "mkdir -p Terraform && cd Terraform" 
+                    sh ''' aztfexport query -n "resourceGroup =~ 'rg_abdel_proc' and (type contains 'Microsoft.Web' or type contains 'Microsoft.Logic')" '''
                 }
             }
         }
