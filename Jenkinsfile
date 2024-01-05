@@ -20,7 +20,8 @@ pipeline {
                 script { 
                     sh "mkdir -p Terraform "
                     dir("Terraform"){ 
-                    sh ''' aztfexport query --non-interactive --plain-ui "resourceGroup =~ 'rg_abdel_proc'  and (type contains 'Microsoft.Web' or type contains 'Microsoft.Logic')"'''
+                    sh ''' aztfexport query --overwrite --non-interactive --plain-ui "resourceGroup =~ 'rg_abdel_proc'  and (type contains 'Microsoft.Web' or type contains 'Microsoft.Logic')"'''
+                    sh "terraform plan"
                 }
                 }
             }
